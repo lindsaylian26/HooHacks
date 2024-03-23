@@ -1,5 +1,6 @@
 from django import forms
-from .models import Advisee, Advisor, SubjectArea
+from .models import Advisee
+from advisors.models import Advisor, SubjectArea
 
 class AdviseeForm(forms.ModelForm):
     preferred_advisor = forms.ModelChoiceField(
