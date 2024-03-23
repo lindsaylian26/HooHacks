@@ -25,6 +25,6 @@ urlpatterns = [
     path('advisors/', include('advisors.urls', namespace='advisors')),
     path('advisees/', include('advisees.urls', namespace='advisees')),
     path('admin/', admin.site.urls),
-    path('calendar/', include('calendar_app.urls')),
+    path('scheduling/', include('scheduling.urls')),
     path('', views.home, name='home'),
 ]
