@@ -18,6 +18,7 @@ app_name = 'advisees'
 from django.contrib import admin
 from django.urls import path, include
 from . import views
+from scheduling.views import oauth2callback 
 
 
 urlpatterns = [
@@ -26,5 +27,6 @@ urlpatterns = [
     path('advisees/', include('advisees.urls', namespace='advisees')),
     path('admin/', admin.site.urls),
     path('scheduling/', include('scheduling.urls')),
+     path('oauth2callback/', oauth2callback, name='oauth2callback'),  # Add this line
     path('', views.home, name='home'),
 ]

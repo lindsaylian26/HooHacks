@@ -11,9 +11,18 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+import os
+
+# In settings.py
+os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+GOOGLE_OAUTH2_CLIENT_SECRETS_JSON = os.path.join(BASE_DIR, '/Users/lindsaylian/HooHacks/ed_vise/credentials.json')
+GOOGLE_CALENDAR_SCOPES = ['https://www.googleapis.com/auth/calendar']
+GOOGLE_OAUTH2_REDIRECT_URI = 'http://localhost:8000/scheduling/oauth2callback/'
+
 
 
 # Quick-start development settings - unsuitable for production
