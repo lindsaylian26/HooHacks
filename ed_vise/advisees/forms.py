@@ -8,10 +8,10 @@ class AdviseeForm(forms.ModelForm):
         required=False,
         help_text='Select your preferred advisor if any.'
     )
-    interests = forms.ModelMultipleChoiceField(
+    subject = forms.ModelChoiceField(
         queryset=SubjectArea.objects.all(),
-        widget=forms.CheckboxSelectMultiple,
-        help_text='Select your areas of interest.'
+        required=True,
+        help_text='Select your subject area.'
     )
     preferred_advising_style = forms.ChoiceField(
         choices=[('in-person', 'In-person'), ('virtual', 'Virtual'), ('either', 'Either')],
@@ -33,7 +33,7 @@ class AdviseeForm(forms.ModelForm):
 
     class Meta:
         model = Advisee
-        fields = ['subject_needed', 'availability', 'preferred_advisor', 'interests',
+        fields = ['availability', 'preferred_advisor', 'subject',
                   'preferred_advising_style', 'meeting_times', 'urgency', 'feedback']
 
     def clean_interests(self):

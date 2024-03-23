@@ -6,10 +6,6 @@ class Advisee(models.Model):
     subject_needed = models.ForeignKey('advisors.Subject', on_delete=models.SET_NULL, null=True)
     availability = models.CharField(max_length=255)
 
-
-class Subject(models.Model):
-    name = models.CharField(max_length=100)
-
 class SubjectArea(models.Model):
     name = models.CharField(max_length=100)
 
