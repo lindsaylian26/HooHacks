@@ -57,7 +57,7 @@ def oauth2callback(request):
         'scopes': credentials.scopes
     }
 
-    return redirect('home')  # Replace 'index' with your desired redirect view
+    return render(request, 'ed_vise/index.html')
 
 
 
@@ -86,6 +86,6 @@ def list_events(request):
 
     # Your logic to handle events goes here
 
-    return render(request, 'events.html', {'events': events})
+    return redirect('scheduling:google_login')
 
 

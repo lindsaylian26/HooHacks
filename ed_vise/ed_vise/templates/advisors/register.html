@@ -4,11 +4,21 @@
     <title>Register as Advisor</title>
 </head>
 <body>
+    {% block content %}
     <h1>Register as Advisor</h1>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Register</button>
     </form>
+
+  <h2>Upcoming Events</h2>
+  <ul>
+    {% for event in events %}
+      <li>{{ event.summary }} ({{ event.start.dateTime }})</li>
+    {% endfor %}
+  </ul>
+{% endblock %}
+
 </body>
 </html>

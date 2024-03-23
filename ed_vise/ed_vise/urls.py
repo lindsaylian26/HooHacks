@@ -26,7 +26,7 @@ urlpatterns = [
     path('advisors/', include('advisors.urls', namespace='advisors')),
     path('advisees/', include('advisees.urls', namespace='advisees')),
     path('admin/', admin.site.urls),
-    path('scheduling/', include('scheduling.urls')),
-     path('oauth2callback/', oauth2callback, name='oauth2callback'),  # Add this line
+    path('scheduling/', include(('scheduling.urls', 'scheduling'), namespace='scheduling')),
+    path('oauth2callback/', oauth2callback, name='oauth2callback'),  # Add this line
     path('', views.home, name='home'),
 ]
