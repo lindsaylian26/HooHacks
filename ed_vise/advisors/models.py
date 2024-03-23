@@ -6,5 +6,8 @@ class Advisor(models.Model):
     subjects = models.ManyToManyField('Subject', related_name='advisors')
     availability = models.CharField(max_length=255)
 
-class Subject(models.Model):
+class SubjectArea(models.Model):
     name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
