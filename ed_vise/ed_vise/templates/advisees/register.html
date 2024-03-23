@@ -1,0 +1,14 @@
+<!-- advisors/templates/advisors/register.html -->
+<html>
+<head>
+    <title>Register as Advisee</title>
+</head>
+<body>
+    <h1>Register as Advisee</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Register</button>
+    </form>
+</body>
+</html>

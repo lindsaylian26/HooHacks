@@ -1,6 +1,7 @@
 # ed_vise/views.py
 
 from django.http import HttpResponse
+from django.shortcuts import render
 
 def home(request):
-    return HttpResponse("Welcome to the Ed-Vise homepage!")
+    return render(request, 'ed_vise/index.html')

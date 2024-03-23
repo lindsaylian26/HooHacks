@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'advisors',
     'advisees',
+    'ed_vise',
 ]
 
 MIDDLEWARE = [
