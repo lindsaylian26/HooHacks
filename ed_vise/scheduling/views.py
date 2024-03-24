@@ -59,7 +59,6 @@ def oauth2callback(request):
 
     return render(request, 'ed_vise/index.html')
 
-
 def list_events(request):
     creds_data = request.session.get('credentials')
 
@@ -83,15 +82,11 @@ def list_events(request):
                                           orderBy='startTime').execute()
     events = events_result.get('items', [])
 
-    # Your logic to handle events goes here
 
-     # Get user's email from Gmail API
-    user_email = service.users().getProfile(userId='me').execute()['emailAddress']
+    return redirect('google_login')
 
-    # Pass email as initial data to the AdviseeForm
-    form = AdviseeForm(initial={'name': user_email})
 
-    return render(request, 'your_template.html', {'form': form})
+
 
 
 def gmail_data(request):

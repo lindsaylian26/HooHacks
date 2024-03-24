@@ -9,6 +9,11 @@ class Advisor(models.Model):
     subjects = models.ManyToManyField('advisees.SubjectArea')  # Adjust the model name if necessary
     availability = models.CharField(max_length=255)
     is_advisor = models.BooleanField(default=True)
+    name = models.CharField(max_length=100, default='')  # Set default value to an empty string
+
+    def __str__(self):
+        return self.name
+
 
     
 class Subject(models.Model):
@@ -20,6 +25,8 @@ class Subject(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    name = models.CharField(max_length=100)
+
     is_advisor = models.BooleanField(default=False)
 
     def __str__(self):

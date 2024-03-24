@@ -4,6 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Ed-Vise{% endblock %}</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding-top: 20px;
+            background-color: #f8f9fa; /* Light gray background */
+        }
+        header {
+            background-color: #007bff; /* Bootstrap primary color for the header */
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 10px;
+        }
+        main {
+            padding: 20px;
+        }
+        footer {
+            text-align: center;
+            background-color: #343a40; /* Bootstrap dark background color for the footer */
+            color: white;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -11,19 +45,19 @@
         <nav>
             <ul>
                 <h2>Register as: </h2>
-                <li><a href="{% url 'advisors:register' %}">Advisors</a></li>
-                <li><a href="{% url 'advisees:register' %}">Advisees</a></li>
+                <li><a href="{% url 'advisors:register' %}" class="text-white">Advisors</a></li>
+                <li><a href="{% url 'advisees:register' %}" class="text-white">Advisees</a></li>
             </ul>
         </nav>
     </header>
 
-    <main>
+    <main class="container">
         {% block content %}
         {% endblock %}
     </main>
 
-    <footer>
+    <footer class="fixed-bottom">
         <p>© 2024 Ed-Vise. All rights reserved.</p>
     </footer>
-</body>
-</html>
+
+    <!-- Bootstrap JS (optional, if needed) 

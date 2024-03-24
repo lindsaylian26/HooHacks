@@ -4,25 +4,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Ed-Vise{% endblock %}</title>
+    <!-- Include Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding-top: 20px;
+            background-color: #f8f9fa; /* Light gray background */
+        }
+        header {
+            background-color: #007bff; /* Bootstrap primary color for the header */
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 10px;
+        }
+        footer {
+            text-align: center;
+            background-color: #343a40; /* Bootstrap dark background color for the footer */
+            color: white;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
-    <header>
+    <header class="container">
         <h1>Welcome to Ed-Vise</h1>
         <nav>
             <ul>
                 <h2>Sign in with Google: </h2>
-                <li><a href="{% url 'scheduling:events' %}">Google Login</a></li>
+                <li><a href="{% url 'scheduling:events' %}" class="btn btn-primary">Google Login</a></li>
             </ul>
         </nav>
     </header>
 
-    <main>
+    <main class="container">
         {% block content %}
         {% endblock %}
     </main>
 
-    <footer>
+    <footer class="container fixed-bottom">
         <p>© 2024 Ed-Vise. All rights reserved.</p>
     </footer>
+
+    <!-- Include Bootstrap JS (optional, if needed) -->
+    <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script> -->
+    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
 </body>
 </html>
