@@ -30,9 +30,17 @@ class AdviseeForm(forms.ModelForm):
         required=False
     )
 
+
+    # Add a name field with initial value and disabled attribute
+    name = forms.CharField(
+        #disabled=True,  # Set the field as disabled
+        required=False,  # Not required as it will be set from the view
+        widget=forms.TextInput(attrs={})  # Set the field as readonly
+    )
+
     class Meta:
         model = Advisee
-        fields = ['availability', 'preferred_advisor', 'subject',
+        fields = ['name', 'preferred_advisor', 'subject',
                   'preferred_advising_style', 'meeting_times', 'urgency', 'feedback']
 
     def clean_interests(self):

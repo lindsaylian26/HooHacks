@@ -6,6 +6,5 @@ class SubjectAreaAdmin(admin.ModelAdmin):
     list_display = ['name']  
 
 
-@admin.register(Advisor)
 class AdvisorAdmin(admin.ModelAdmin):
     list_display = ['name']  

@@ -1,11 +1,4 @@
-"""
-from django.shortcuts import render
-from .models import Event
 
-def event_list(request):
-    events = Event.objects.all()
-    return render(request, 'calendar_app/event_list.html', {'events': events})
-"""
 from django.shortcuts import redirect, render
 from google_auth_oauthlib.flow import Flow
 from django.conf import settings
@@ -14,7 +7,7 @@ from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 from googleapiclient.discovery import build
 from datetime import datetime
-from django.urls import reverse 
+from advisees.forms import AdviseeForm
 
 def google_login(request):
     flow = Flow.from_client_secrets_file(
@@ -63,7 +56,15 @@ def oauth2callback(request):
         'scopes': credentials.scopes
     }
 
-    return render(request, 'ed_vise/index.html')
+    # Retrieve user profile information
+    service = build('oauth2', 'v2', credentials=credentials)
+    profile = service.userinfo().get().execute()
+    username = profile.get('name', 'Unknown')
+
+    # Pass the username to the form initialization
+    form = AdviseeForm(initial={'name': username})
+
+    return render(request, 'ed_vise/index.html', {'form': form})
 
 
 def list_events(request):
@@ -91,6 +92,42 @@ def list_events(request):
 
     # Your logic to handle events goes here
 
-    return render(request, 'scheduling:google_login')
+     # Get user's email from Gmail API
+    user_email = service.users().getProfile(userId='me').execute()['emailAddress']
+
+    # Pass email as initial data to the AdviseeForm
+    form = AdviseeForm(initial={'name': user_email})
+
+    return render(request, 'your_template.html', {'form': form})
 
 
+def gmail_data(request):
+    # Check if credentials are available in the session
+    if 'credentials' not in request.session:
+        return redirect('google_login')  # Redirect to login if credentials are not available
+
+    # Get credentials from session
+    credentials_data = request.session['credentials']
+    credentials = Credentials(**credentials_data)
+
+    # Build Gmail service
+    service = build('gmail', 'v1', credentials=credentials)
+
+    # Example: Fetching email labels
+    results = service.users().labels().list(userId='me').execute()
+    labels = results.get('labels', [])
+
+    # Pass fetched labels data to the form
+    form = AdviseeForm(label_choices=[(label['id'], label['name']) for label in labels])
+
+    return render(request, 'gmail_data.html', {'form': form})
+
+def credentials_to_dict(credentials):
+    return {
+        'token': credentials.token,
+        'refresh_token': credentials.refresh_token,
+        'token_uri': credentials.token_uri,
+        'client_id': credentials.client_id,
+        'client_secret': credentials.client_secret,
+        'scopes': credentials.scopes
+    }
