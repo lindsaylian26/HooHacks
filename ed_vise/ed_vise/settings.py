@@ -55,6 +55,13 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'  # or 'django.contrib.sessions.backends.cache' or other session backends
+SESSION_COOKIE_NAME = 'sessionid'  # Name of the cookie to use for sessions
+SESSION_COOKIE_AGE = 3600  # Age of the session cookie in seconds (e.g., 3600 for 1 hour)
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False  # Set it to True if you want sessions to expire when the user closes the browser
+SESSION_SAVE_EVERY_REQUEST = False  # Set it to True if you want to save the session on every request
+
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',

@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
 
 urlpatterns = [
@@ -7,5 +7,4 @@ urlpatterns = [
     path('events/', views.list_events, name='list-events'),
     path('events/', views.list_events, name='events'),
     path('google-login/', views.google_login, name='google_login'),
-
 ]

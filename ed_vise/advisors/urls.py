@@ -6,6 +6,6 @@ from .views import AdvisorList
 urlpatterns = [
     path('register/', views.register_advisor, name='register'),
     path('profile/<int:advisor_id>/', views.advisor_profile, name='advisor_profile'),
-    path('api/advisors/', AdvisorList.as_view(), name='advisor-list')
-
+    path('api/advisors/', AdvisorList.as_view(), name='advisor-list'),
+    path('', AdvisorList.as_view(), name='advisor_list'),
 ]

@@ -19,14 +19,16 @@ from django.contrib import admin
 from django.urls import path, include
 from . import views
 from scheduling.views import oauth2callback 
+from scheduling.views import google_login  # Adjust the import path according to your project structure
+
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('advisors/', include('advisors.urls', namespace='advisors')),
     path('advisees/', include('advisees.urls', namespace='advisees')),
-    path('admin/', admin.site.urls),
     path('scheduling/', include(('scheduling.urls', 'scheduling'), namespace='scheduling')),
-    path('oauth2callback/', oauth2callback, name='oauth2callback'),  # Add this line
+    path('oauth2callback/', oauth2callback, name='oauth2callback'),  
+    path('google-login/', google_login, name='google_login'), 
     path('', views.home, name='home'),
 ]

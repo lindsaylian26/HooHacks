@@ -14,6 +14,7 @@ from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 from googleapiclient.discovery import build
 from datetime import datetime
+from django.urls import reverse 
 
 def google_login(request):
     flow = Flow.from_client_secrets_file(
@@ -34,7 +35,7 @@ def oauth2callback(request):
     # Check if 'state' is in the session
     if 'state' not in request.session:
         # Handle the missing state (e.g., redirect to login or show an error)
-        return redirect('google_login')
+        return redirect('google_login')  # Redirect to the index page of 'ed_vise' app
 
     state = request.session['state']
 
@@ -44,6 +45,11 @@ def oauth2callback(request):
         state=state,
         redirect_uri='http://localhost:8000/oauth2callback'
     )
+
+    # Validate state parameter
+    if state != request.GET.get('state'):
+        # Handle mismatching state (e.g., redirect to login or show an error)
+          return render(request, 'ed_vise/index.html')  # Redirect to a valid URL
 
     flow.fetch_token(authorization_response=request.get_full_path())
 
@@ -58,7 +64,6 @@ def oauth2callback(request):
     }
 
     return render(request, 'ed_vise/index.html')
-
 
 
 def list_events(request):
@@ -86,6 +91,6 @@ def list_events(request):
 
     # Your logic to handle events goes here
 
-    return redirect('scheduling:google_login')
+    return render(request, 'scheduling:google_login')
 
 
