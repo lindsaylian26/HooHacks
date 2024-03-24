@@ -7,6 +7,7 @@ class Advisee(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     subject_needed = models.ForeignKey('advisees.SubjectArea', on_delete=models.SET_NULL, null=True)
     availability = models.CharField(max_length=255)
+    is_advisor = models.BooleanField(default=False)
     
     def get_advisor_model(self):
         return apps.get_model('advisors', 'Advisor')

@@ -46,7 +46,7 @@ class AdviseeForm(forms.ModelForm):
     
     def __init__(self, *args, **kwargs):
         super(AdviseeForm, self).__init__(*args, **kwargs)
-        self.fields['preferred_advisor'].queryset = Advisor.objects.filter(profile__is_advisor=True)
+        self.fields['preferred_advisor'].queryset = Advisor.objects.filter(is_advisor=True)
 
     def clean_interests(self):
         interests = self.cleaned_data.get('interests')

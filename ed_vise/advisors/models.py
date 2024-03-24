@@ -8,6 +8,7 @@ class Advisor(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     subjects = models.ManyToManyField('advisees.SubjectArea')  # Adjust the model name if necessary
     availability = models.CharField(max_length=255)
+    is_advisor = models.BooleanField(default=True)
 
     
 class Subject(models.Model):
