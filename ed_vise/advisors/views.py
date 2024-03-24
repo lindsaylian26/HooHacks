@@ -11,7 +11,7 @@ def register_advisor(request):
             advisor = form.save(commit=False)
             advisor.user = request.user
             advisor.save()
-            return redirect('advisor_profile', advisor_id=advisor.id)
+            return render(request, 'advisor/success_advisor.html')
     else:
         form = AdvisorForm()
     return render(request, 'advisors/register.html', {'form': form})

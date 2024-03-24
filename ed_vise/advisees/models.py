@@ -13,6 +13,11 @@ class Advisee(models.Model):
     
     def get_advisor_model(self):
         return apps.get_model('advisors', 'Advisor')
+    
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['user'], name='unique_advisee_user_id')
+        ]
 
 
 
