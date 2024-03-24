@@ -2,3 +2,9 @@ credentials.json
 /envUsers/lindsaylian/HooHacks/ed_vise/credentials.json
 __pycache__/
 *.pyc
+/my_env
+/venv
+/env
+ed_vise/my_env
+ed_vise/my_venv
+
