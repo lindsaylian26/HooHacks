@@ -56,15 +56,8 @@ def oauth2callback(request):
         'scopes': credentials.scopes
     }
 
-    # Retrieve user profile information
-    service = build('oauth2', 'v2', credentials=credentials)
-    profile = service.userinfo().get().execute()
-    username = profile.get('name', 'Unknown')
 
-    # Pass the username to the form initialization
-    form = AdviseeForm(initial={'name': username})
-
-    return render(request, 'ed_vise/index.html', {'form': form})
+    return render(request, 'ed_vise/index.html')
 
 
 def list_events(request):

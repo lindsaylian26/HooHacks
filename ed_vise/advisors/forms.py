@@ -26,9 +26,17 @@ class AdvisorForm(forms.ModelForm):
         required=False
     )
 
+    # Add a name field with initial value and disabled attribute
+    name = forms.CharField(
+        #disabled=True,  # Set the field as disabled
+        required=False,  # Not required as it will be set from the view
+        widget=forms.TextInput(attrs={})  # Set the field as readonly
+    )
+
+
     class Meta:
         model = Advisor
-        fields = ['advising_styles', 'expertise_areas', 'available_times', 'priority_preference', 'feedback']
+        fields = ['name', 'advising_styles', 'expertise_areas', 'available_times', 'priority_preference', 'feedback']
 
     def clean_expertise_areas(self):
         expertise_areas = self.cleaned_data.get('expertise_areas')

@@ -2,17 +2,13 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save  # This import is required for post_save
 from django.dispatch import receiver  # This import is required for the receiver decorator
+from advisees.models import SubjectArea
 
 class Advisor(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    subject = models.ManyToManyField('Subject', related_name='advisors')
+    subjects = models.ManyToManyField('advisees.SubjectArea')  # Adjust the model name if necessary
     availability = models.CharField(max_length=255)
 
-class SubjectArea(models.Model):
-    name = models.CharField(max_length=100)
-
-    def __str__(self):
-        return self.name
     
 class Subject(models.Model):
     name = models.CharField(max_length=100)
